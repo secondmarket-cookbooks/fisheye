@@ -1,0 +1,49 @@
+#!/bin/sh -e
+# Fisheye startup script
+#chkconfig: 2345 80 05
+#description: Fisheye
+ 
+# Define some variables
+# Name of app ( JIRA, Confluence, etc )
+APP=fisheye
+# Name of the user to run as
+RUN_AS_USER=fisheye
+# Location of application's bin directory
+BASE=<%= @fisheye_base %>
+
+start() {
+        echo "Starting Fisheye: "
+        if [ "x$USER" != "x$RUN_AS_USER" ]; then
+          su - $RUN_AS_USER -c "$BASE/bin/fisheyectl.sh start"
+        else
+          $BASE/bin/fisheyectl.sh start
+        fi
+        echo "done."
+}
+stop() {
+        echo "Shutting down Fisheye: "
+        if [ "x$USER" != "x$RUN_AS_USER" ]; then
+          su - $RUN_AS_USER -c "$BASE/bin/fisheyectl.sh stop"
+        else
+          $BASE/bin/fisheyectl.sh stop
+        fi
+        echo "done."
+}
+ 
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  restart)
+        stop
+        sleep 10
+        start
+        ;;
+  *)
+        echo "Usage: $0 {start|stop|restart}"
+esac
+ 
+exit 0
