@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-default['fisheye']['version']='2.9.0'
+default['fisheye']['version']='2.9.1'
 default['fisheye']['parentdir']='/opt'
 
 # This is what the Fisheye documentation refers to as the "<Fisheye home directory>"
