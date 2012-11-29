@@ -57,7 +57,8 @@ Vagrant::Config.run do |config|
     }
 
     chef.run_list = [
-      "recipe[fisheye::server]"
+      "recipe[fisheye::server]",
+      "recipe[fisheye::local_database]"
     ]
   end
 end
