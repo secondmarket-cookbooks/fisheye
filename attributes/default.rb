@@ -17,12 +17,14 @@
 # limitations under the License.
 #
 
-default['fisheye']['version']='2.9.1'
+default['fisheye']['version']='2.10.0'
 default['fisheye']['parentdir']='/opt'
 
 # This is what the Fisheye documentation refers to as the "<Fisheye home directory>"
 default['fisheye']['homedir']="#{node['fisheye']['parentdir']}/fecru-#{node['fisheye']['version']}"
-default['fisheye']['zipfile']="fisheye-#{node['fisheye']['version']}.zip"
+
+# Change to "fisheye-" as the zip file name if you want Fisheye without Crucible.
+default['fisheye']['zipfile']="crucible-#{node['fisheye']['version']}.zip"
 default['fisheye']['url']="http://www.atlassian.com/software/fisheye/downloads/binary/#{node['fisheye']['zipfile']}"
 
 # This is what the Fisheye documentation refers to as the FISHEYE_INST directory
